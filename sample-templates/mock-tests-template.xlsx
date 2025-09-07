@@ -1,0 +1,18 @@
+# This is a placeholder for the Excel template
+# The actual Excel file would be created with the following structure:
+#
+# Column A: Index Number
+# Column B: Test Name
+# Column C: Date
+# Column D: English Language
+# Column E: Mathematics
+# Column F: Integrated Science
+# Column G: Social Studies
+# Column H: Religious & Moral Education
+# Column I: Information & Communication Technology
+# Column J: Ghanaian Language
+# Column K: French
+#
+# Sample data:
+# 2024001 | Third Term Mock Test | 2024-07-15 | 75 | 85 | 80 | 70 | 75 | 80 | 75 | 50
+# 2024002 | Third Term Mock Test | 2024-07-15 | 90 | 45 | 50 | 88 | 92 | 70 | 95 | 80

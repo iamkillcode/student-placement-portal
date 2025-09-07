@@ -1,0 +1,13 @@
+# This is a placeholder for the Excel template
+# The actual Excel file would be created with the following structure:
+# 
+# Column A: Name
+# Column B: Index Number  
+# Column C: Gender
+# Column D: Date of Birth
+# Column E: Strengths
+# Column F: Weaknesses
+#
+# Sample data:
+# Kwame Asante | 2024021 | Male | 2008-03-15 | Mathematics, Science | English Language, Social Studies
+# Ama Serwaa | 2024022 | Female | 2008-07-22 | English Language, Social Studies | Mathematics, Science
