@@ -1,189 +1,120 @@
 # 🏫 Steadfast Academy - Student Management System
 
-A comprehensive student management system designed for **Steadfast Academy** staff to track and manage JHS students' mock test performance and predict their Senior High School placement. This system helps teachers make informed decisions about student progress and provides insights for academic improvement.
+A modern, full-stack student management system for **Steadfast Academy** to track JHS students' mock test performance and predict Senior High School placement using real BECE logic and Ghana SHS categories.
+
+---
+
+## 📁 Project Structure
+
+```
+spp-frontend/   # React + Vite frontend (UI)
+spp-backend/    # Node.js + Express + MongoDB backend (API, logic, seeding)
+README.md       # This file
+```
+
+---
 
 ## 🌟 Features
 
-### For Steadfast Academy Staff
-- **Student Database**: Pre-loaded with 10 sample students from JHS 3A, 3B, and 3C
+- **Student Database**: Pre-loaded with 20 sample students (JHS 3A, 3B, 3C)
 - **Mock Test Management**: Add and track multiple mock tests per student
-- **Performance Tracking**: Monitor student progress across different test periods
-- **Aggregate Calculation**: Automatic calculation of BECE-style aggregates
-- **School Placement Prediction**: Predict which schools students are likely to be placed in
-- **Dashboard Analytics**: Overview of student performance across all classes
-- **Filtering & Search**: Filter students by class and performance category
-- **Progress Monitoring**: Track improvement trends over time
+- **Performance Tracking**: Monitor student progress and improvement
+- **BECE Aggregate Calculation**: 4 core + best 2 electives (grades 1-9)
+- **Raw Score Calculation**: View raw scores alongside aggregates
+- **School Placement Prediction**: Uses real Ghana SHS Category A/B/C lists
+- **Dashboard Analytics**: Overview of performance by class and category
+- **Filtering & Search**: Filter by class, category, and more
+- **Accessible UI**: High-contrast, readable tables and dropdowns
+- **Easy Deployment**: Ready for local and cloud (Render, Railway, Vercel, Netlify)
 
-### Student Management
-- **Individual Student Profiles**: Complete academic profiles with strengths and weaknesses
-- **Mock Test History**: Track all mock tests taken by each student
-- **Performance Categories**: Automatic categorization (A, B, C) based on aggregates
-- **School Predictions**: Real-time placement predictions for each test
-- **Academic Insights**: Identify student strengths and areas for improvement
+---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js (version 16 or higher)
-- npm (version 8 or higher)
+- Node.js (v16+)
+- npm (v8+)
+- MongoDB (local or cloud, e.g. MongoDB Atlas)
 
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd mock-school-placement-simulator
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Start the development server**
-   ```bash
-   npm run dev
-   ```
-
-4. **Open your browser**
-   Navigate to `http://localhost:5173`
-
-### Building for Production
-
+### 1. Clone the repository
 ```bash
-npm run build
-npm run preview
+# In PowerShell:
+git clone <repository-url>
+cd SPP
 ```
 
-## 📊 How It Works
-
-### Aggregate Calculation
-The system calculates a student's aggregate based on their mock test scores:
-- **Core Subjects**: English, Mathematics, Integrated Science, Social Studies (weighted equally)
-- **Elective Subjects**: RME, ICT, Ghanaian Language, French (weighted at 50%)
-- **Aggregate Range**: 1-30 (lower is better, following BECE standards)
-
-### School Categories
-- **Category A (Top Tier)**: Aggregate 1-6 (Achimota, PRESEC, Wesley Girls, etc.)
-- **Category B (Good Schools)**: Aggregate 7-15 (Ghana National College, St. Peter's, etc.)
-- **Category C (Standard Schools)**: Aggregate 16-30 (St. Monica's, St. John's, etc.)
-
-### Placement Algorithm
-1. Calculate student's aggregate from mock scores
-2. Determine eligible school category
-3. Match student preferences with available schools
-4. Suggest best available placement
-5. Provide motivational feedback and study advice
-
-## 🏗️ Architecture
-
-### Frontend Structure
-```
-src/
-├── App.jsx                 # Main application component
-├── main.jsx               # Application entry point
-├── styles.css             # Modern, responsive styling
-├── data/
-│   └── schoolsData.js     # School information and categories
-└── utils/
-    ├── constants.js       # Application constants
-    └── placementCalculator.js # Core placement logic
+### 2. Setup the Backend
+```bash
+cd spp-backend
+npm install
+# Set your MongoDB URI in .env (see .env.example)
+# Seed the database with sample students and mock tests:
+npm run seed
+# Start the backend server:
+npm run dev
+# API runs at http://localhost:5000 by default
 ```
 
-### Backend Ready
-The codebase is structured to easily support backend integration:
-- **Modular Design**: Business logic separated from UI components
-- **API Endpoints**: Predefined endpoints for future backend integration
-- **Data Validation**: Input validation ready for server-side implementation
-- **Export Functions**: Ready for server-side file generation
-
-## 🎨 Design Features
-
-- **Modern UI**: Clean, professional design with gradient backgrounds
-- **Responsive**: Works perfectly on desktop, tablet, and mobile
-- **Accessible**: Proper contrast ratios and keyboard navigation
-- **Motivational**: Color-coded feedback and encouraging messages
-- **Print-Friendly**: Optimized for printing results
-
-## 🔧 Configuration
-
-### Adding New Schools
-Edit `src/data/schoolsData.js` to add new schools:
-
-```javascript
-{
-  name: "School Name",
-  code: "1000001",
-  region: "Region Name",
-  programs: ["Science", "General Arts", "Business"],
-  capacity: 500,
-  cutoffs: { maxAggregate: 6 }
-}
+### 3. Setup the Frontend
+```bash
+cd ../spp-frontend
+npm install
+# Set API_BASE_URL in .env (see .env.example), e.g. http://localhost:5000
+npm run dev
+# App runs at http://localhost:5173
 ```
-
-### Modifying Aggregate Thresholds
-Update `src/utils/constants.js`:
-
-```javascript
-export const AGGREGATE_THRESHOLDS = {
-  TOP_TIER: 6,    // Category A schools
-  GOOD: 15        // Category B schools
-};
-```
-
-## 📱 Usage
-
-### For Students
-1. **Enter Personal Information**: Name and index number
-2. **Input Mock Scores**: Enter scores for each subject (0-100)
-3. **Select Preferences**: Choose preferred schools and programs
-4. **Calculate Placement**: Click "Calculate My Placement"
-5. **Review Results**: See your predicted placement and get study advice
-
-### For Teachers/Administrators
-1. **Access Admin Panel**: Click the admin button (bottom right)
-2. **Manage Data**: Add/edit students and schools
-3. **Export Results**: Generate reports in various formats
-4. **Monitor Performance**: Track student progress over time
-
-## 🚀 Future Enhancements
-
-- [ ] **Backend Integration**: Full server-side implementation
-- [ ] **User Authentication**: Student and teacher accounts
-- [ ] **Progress Tracking**: Historical performance monitoring
-- [ ] **Advanced Analytics**: Detailed performance insights
-- [ ] **Mobile App**: Native mobile application
-- [ ] **Offline Support**: Work without internet connection
-- [ ] **Multi-language**: Support for local languages
-- [ ] **Integration**: Connect with school management systems
-
-## 🤝 Contributing
-
-We welcome contributions! Please:
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🙏 Acknowledgments
-
-- Ghana Education Service for the school placement system inspiration
-- All the schools and students who provided feedback
-- The React and Vite communities for excellent tooling
-
-## 📞 Support
-
-For support, questions, or feature requests:
-- Create an issue on GitHub
-- Contact the development team
-- Check the documentation
 
 ---
 
-**Made with ❤️ for Ghanaian students and educators**
+## 🌍 Deployment
+
+- **Backend**: Deploy to [Render](https://render.com), [Railway](https://railway.app), or any Node/Mongo host.
+- **Frontend**: Deploy to [Vercel](https://vercel.com) or [Netlify](https://netlify.com). Set `API_BASE_URL` to your backend URL.
+- **Serve Both Together**: Optionally, serve the frontend build from Express (see backend docs).
+- **Temporary Sharing**: Use [ngrok](https://ngrok.com) to expose local servers for testing.
+
+---
+
+## 🧮 BECE Aggregate & Placement Logic
+
+- **Aggregate Calculation**: 4 core subjects (English, Math, Science, Social) + best 2 electives (RME, ICT, Ghanaian Language, French). Each subject graded 1-9 (lower is better).
+- **Raw Score**: Sum of all subject scores (0-600).
+- **School Categories**:
+  - **A**: Aggregate 1-6 (e.g. Achimota, PRESEC, Wesley Girls)
+  - **B**: Aggregate 7-15 (e.g. Ghana National, St. Peter's)
+  - **C**: Aggregate 16-36 (e.g. St. Monica's, St. John's)
+- **Placement**: Students matched to real schools by category and aggregate.
+
+---
+
+## 🏗️ Architecture
+
+- **Frontend**: React (Vite), API calls use `API_BASE_URL` from `.env` for backend communication.
+- **Backend**: Node.js, Express, MongoDB. All BECE logic, seeding, and placement handled here.
+- **Seeding**: `spp-backend/scripts/seedStudents.js` generates realistic students/tests.
+
+---
+
+## ⚙️ Configuration
+
+- **API Base URL**: Set `API_BASE_URL` in `spp-frontend/.env` to your backend URL.
+- **MongoDB URI**: Set `MONGODB_URI` in `spp-backend/.env`.
+- **School Lists**: Edit `spp-backend/scripts/schoolLists.js` for real Ghana SHS data.
+
+---
+
+## 🖥️ Usage
+
+- **Teachers/Admins**: View dashboards, add/edit students/tests, export reports.
+- **Students**: View mock test history, placement predictions, and improvement analysis.
+
+---
+
+## 📝 Documentation & Support
+
+- See code comments and each folder's README for more details.
+- For issues, open a GitHub issue or contact the dev team.
+
+---
+
+**Made with ❤️ for Ghanaian students and educators.**
