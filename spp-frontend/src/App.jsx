@@ -31,10 +31,12 @@ export default function App() {
   const [filterGender, setFilterGender] = useState('all');
   const [importMessage, setImportMessage] = useState('');
 
+  const API_BASE_URL = "https://student-placement-portal-hzyw.onrender.com";
+
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/students');
+        const response = await axios.get(`${API_BASE_URL}/api/students`);
         setStudents(response.data);
       } catch (error) {
         console.error("Error fetching students:", error);
@@ -74,7 +76,7 @@ export default function App() {
         ...selectedStudent,
         mockTests: [...selectedStudent.mockTests, newTest]
       };
-      await axios.post('http://localhost:4000/api/students', updatedStudent);
+      await axios.post(`${API_BASE_URL}/api/students`, updatedStudent);
       setStudents(prev => prev.map(student => 
         student.id === selectedStudent.id 
           ? updatedStudent
@@ -139,12 +141,12 @@ export default function App() {
         let imported = 0;
         for (const student of newStudents) {
           try {
-            await axios.post('http://localhost:4000/api/students', student);
+            await axios.post(`${API_BASE_URL}/api/students`, student);
             imported++;
           } catch (err) {
           }
         }
-        const response = await axios.get('http://localhost:4000/api/students');
+        const response = await axios.get(`${API_BASE_URL}/api/students`);
         setStudents(response.data);
         setImportMessage(`Successfully imported ${imported} students!`);
         setTimeout(() => setImportMessage(''), 3000);
@@ -200,12 +202,12 @@ export default function App() {
             mockTests: [...student.mockTests, newTest]
           };
           try {
-            await axios.post('http://localhost:4000/api/students', updatedStudent);
+            await axios.post(`${API_BASE_URL}/api/students`, updatedStudent);
             importedCount++;
           } catch (err) {
           }
         }
-        const response = await axios.get('http://localhost:4000/api/students');
+        const response = await axios.get(`${API_BASE_URL}/api/students`);
         setStudents(response.data);
         setImportMessage(`Successfully imported ${importedCount} mock test results!`);
         setTimeout(() => setImportMessage(''), 3000);

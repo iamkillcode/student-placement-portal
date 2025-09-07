@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 const studentRoutes = require('./routes/studentRoutes');
 require('dotenv').config();
 
@@ -10,7 +11,7 @@ app.use(express.json());
 
 // Serve static frontend
 app.use(express.static(path.join(__dirname, 'dist')));
-app.get('*', (req, res) => {
+app.get(/^\/(?!api).*/, (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
